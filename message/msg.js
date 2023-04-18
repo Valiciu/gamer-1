@@ -15,7 +15,7 @@ let { ytmp4, ytmp3, ytplay, ytplayvid } = require('../lib/youtube')
 const { mediafireDl, getGroupAdmins } = require('../lib/myfunc')
 const axios = require("axios");
 const cheerio = require("cheerio");
-moment.tz.setDefault("Asia/Jakarta").locale("id");
+moment.tz.setDefault("Africa/Nairobi").locale("id");
 
 module.exports = async (conn, msg, m, openai) => {
   try {
@@ -121,7 +121,7 @@ _The Bot is limited to answering ${MAX_TOKEN} words at most_
 - ${prefix}ping
 - ${prefix}runtime\`\`\`
 
-🤖 *IA*
+🤖 *AI*
 \`\`\`- ${prefix}chatgpt
 - ${prefix}chatgpt2
 - ${prefix}delchatgpt
@@ -161,19 +161,19 @@ if (!textoo) return conn.sendMessage(from, { text: `*[❗] Por favor usa una de 
 let bott = global.db.data.settings[conn.user.id] || {}            
 if (textoo == 'enable') {
 bott.restrict = true
-conn.sendMessage(from, { text: `*[ ✔ ] Se activaron correctamente las restricciones del Bot, recuerde que el uso de comandos con restricciones pueden causar suspension a su numero y esto es bajo su propio riesgo*` }, { quoted: msg });      
-} else if (textoo == 'disable') {
-bott.restrict = false    
-conn.sendMessage(from, { text: `*[ ✔ ] Se desactivaron correctamente las restricciones del Bot, ahora el Bot tiene restricciones*` }, { quoted: msg });     
+conn.sendMessage(from, { text: `*[ ✔ ] Bot restrictions have been activated correctly, remember that the use of commands with restrictions can cause your number to be suspended and this is at your own risk*` }, { quoted: msg });
+} else if (text == 'disable') {
+bott.restrict = false
+conn.sendMessage(from, { text: `*[ ✔ ] Successfully disabled Bot restrictions, now Bot has restrictions*` }, { quoted: msg });
 } else {
-conn.sendMessage(from, { text: `*[❗] Por favor usa una de las siguientes opciones:*\n*—◉ ${prefix}restrict enable*\n*—◉ ${prefix}restrict disable*` }, { quoted: msg })}   
-break            
-case 'runtime':   
-conn.sendMessage(from, { text: `*${require('../lib/myfunc').runtime(process.uptime())}*` }, { quoted: msg });    
+conn.sendMessage(from, { text: `*[❗] Please use one of the following options:*\n*—◉ ${prefix}restrict enable*\n*—◉ ${prefix}restrict disable*` } , { quoted: msg })}
+break
+case 'runtime':
+conn.sendMessage(from, { text: `*${require('../lib/myfunc').runtime(process.uptime())}*` }, { quoted: msg });
 break
 case 'hidetag':
-if (!msg.isGroup) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser usado en grupos*` }, { quoted: msg }) 
-if (!isAdmin) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser usado por admins del grupo*` }, { quoted: msg })    
+if (!msg.isGroup) return conn.sendMessage(from, { text: `*[❗] This command can only be used in groups*` }, { quoted: msg })
+if (!isAdmin) return conn.sendMessage(from, { text: `*[❗] This command can only be used by group admins*` }, { quoted: msg })    
 try {
 let users = participants.map(u => u.id).filter(id => id);
 let htextos = `${textoo ? textoo : ''}`
@@ -200,15 +200,15 @@ fs.unlinkSync(`./tmp/${senderJid.split("@")[0]}.jpg`)
 } else {
 await conn.sendMessage(from, { text : `${htextos}`, mentions: users }, { quoted: msg })}
 } catch {
-conn.sendMessage(from, { text: `*[❗] Para usar este comando debe agregar un texto o responder a una imagen o video*` }, { quoted: msg })}    
-break 
-case 'kick':        
-if (!restrictTOF) return conn.sendMessage(from, { text: `*[❗] El Owner tiene restringido (${prefix}restrict enable/disable) el uso de este comando*`}, { quoted: msg });        
-if (!msg.isGroup) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser usado en grupos*`}, { quoted: msg }) 
-if (!isBotAdmin) return conn.sendMessage(from, { text: `*[❗] Para usar este comando, el Bot debe ser admin*`}, { quoted: msg })          
-if (!isAdmin) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser usado por admins del grupo*`}, { quoted: msg })                               
+conn.sendMessage(from, { text: `*[❗] To use this command you must add a text or reply to an image or video*` }, { quoted: msg })}
+break
+case 'kick':
+if (!restrictTOF) return conn.sendMessage(from, { text: `*[❗] The Owner is restricted (${prefix}restrict enable/disable) from using this command*`}, { quoted: msg });
+if (!msg.isGroup) return conn.sendMessage(from, { text: `*[❗] This command can only be used in groups*`}, { quoted: msg })
+if (!isBotAdmin) return conn.sendMessage(from, { text: `*[❗] To use this command, the Bot must be admin*`}, { quoted: msg })
+if (!isAdmin) return conn.sendMessage(from, { text: `*[❗] This command can only be used by group admins*`}, { quoted: msg })                               
 let iuserK = `${msg.quotedMsg ? msg.quotedMsg.key.participant || '' : ''}${msg.mentioned ? msg.mentioned : ''}`      
-if (!iuserK) return conn.sendMessage(from, { text: `*[❗] Uso correcto del comando:*\n*┯┷*\n*┠≽ ${prefix}kick @${senderJid.split`@`[0] || 'tag'}*\n*┠≽ ${prefix}kick -> responder a un mensaje*\n*┷┯*`, mentions: [senderJid]}, { quoted: msg });                     
+if (!iuserK) return conn.sendMessage(from, { text: `*[❗] Correct use of the command:*\n*┯┷*\n*┠≽ ${prefix}kick @${senderJid.split`@`[0] || 'tag'}*\n*┠≽ ${prefix}kick -> responder a un mensaje*\n*┷┯*`, mentions: [senderJid]}, { quoted: msg });                     
 try {
 var userrrK = '';
 if (msg.quotedMsg && msg.quotedMsg.key && msg.quotedMsg.key.participant) {
@@ -219,25 +219,25 @@ userrrK = msg.mentioned[0];
 console.log(e);
 } finally {
 if (userrrK) {
-if(conn.user.id.includes(userrrK)) return conn.sendMessage(from, { text: `*[❗] No puedo eliminarme a mi mismo, si desea eliminarme hagalo manualmente*`, mentions: [userrrK]}, { quoted: msg })     
+if(conn.user.id.includes(userrrK)) return conn.sendMessage(from, { text: `*[❗] I can't delete myself, if you want to delete me do it manually*`, mentions: [userrrK]}, { quoted: msg })
 let responseb = await conn.groupParticipantsUpdate(from, [userrrK], 'remove')
-let exitoso1 = `*@${userrrK.split`@`[0] || 'user'} fue eliminado exitosamente del grupo*`
-let error1 = `*@${userrrK.split`@`[0] || 'user'} es el creador del grupo, no puedo eliminar al creador del grupo*`
-let error2 = `*@${userrrK.split`@`[0] || 'user'} ya ha sido eliminado o ha abandonado el grupo*`
-if (responseb[0].status === "200") { conn.sendMessage(from, { text: exitoso1, mentions: [userrrK]}, { quoted: msg })    
+let success1 = `*@${userrrK.split`@`[0] || 'user'} was successfully removed from the group*`
+let error1 = `*@${userrrK.split`@`[0] || 'user'} is the creator of the group, I can't remove the creator of the group*`
+let error2 = `*@${userrrK.split`@`[0] || 'user'} has already been removed or has left the group*`
+if (responseb[0].status === "200") { conn.sendMessage(from, { text: success1, mentions: [userrrK]}, { quoted: msg })
 } else if (responseb[0].status === "406") { conn.sendMessage(from, { text: error1, mentions: [userrrK]}, { quoted: msg })
 } else if (responseb[0].status === "404") { conn.sendMessage(from, { text: error2, mentions: [userrrK]}, { quoted: msg })
-} else { conn.sendMessage(from, { text: `*[❗] Algo salio mal y no fue posible ejecutar el comando*`}, { quoted: msg })
+} else { conn.sendMessage(from, { text: `*[❗] Something went wrong and it was not possible to execute the command*`}, { quoted: msg })
 }} else {
-conn.sendMessage(from, { text: `*[❗] No se proporcionó un usuario válido para expulsar*`});
+conn.sendMessage(from, { text: `*[❗] No valid user provided to kick out*`});
 return; 
 }}
 break            
 case 'promote':
-if (!msg.isGroup) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser usado en grupos*` }, { quoted: msg }) 
-if (!isAdmin) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser usado por admins del grupo*` }, { quoted: msg })  
+if (!msg.isGroup) return conn.sendMessage(from, { text: `*[❗] This command can only be used on groups*` }, { quoted: msg })
+if (!isAdmin) return conn.sendMessage(from, { text: `*[❗] This command can only be used by group admins*` }, { quoted: msg })  
 let iuser = `${msg.quotedMsg ? msg.quotedMsg.key.participant || '' : ''}${msg.mentioned ? msg.mentioned : ''}`      
-if (!iuser) return conn.sendMessage(from, { text: `*[❗] Uso correcto del comando:*\n*┯┷*\n*┠≽ ${prefix}promote @${senderJid.split`@`[0] || 'tag'}*\n*┠≽ ${prefix}promote -> responder a un mensaje*\n*┷┯*`, mentions: [senderJid] }, { quoted: msg });                     
+if (!iuser) return conn.sendMessage(from, { text: `*[❗] Correct use of the command:*\n*┯┷*\n*┠≽ ${prefix}promote @${senderJid.split`@`[0] || 'tag'}*\n*┠≽ ${prefix}promote -> responder a un mensaje*\n*┷┯*`, mentions: [senderJid] }, { quoted: msg });                     
 try {
 var userrr = '';
 if (msg.quotedMsg && msg.quotedMsg.key && msg.quotedMsg.key.participant) {
@@ -252,13 +252,13 @@ if (groupAdmins.includes(userrr)) {
 conn.sendMessage(from, { text: `*[❗] @${userrr.split`@`[0] || 'user'} ya forma parte de l@s admins del grupo*`, mentions: [userrr] }, { quoted: msg }); 
 } else {
 conn.groupParticipantsUpdate(from, [userrr], 'promote')
-conn.sendMessage(from, { text: `*[ ✔ ] Comando ejecutado con éxito, ahora @${userrr.split`@`[0] || 'user'} forma parte de l@s admins del grupo*`, mentions: [userrr] }, { quoted: msg })}}}
+conn.sendMessage(from, { text: `*[ ✔ ] Command executed successfully, now @${userrr.split`@`[0] || 'user'} is part of the group admins*`, mentions: [userrr] }, { quoted: msg })}}}
 break
 case 'demote':
-if (!msg.isGroup) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser usado en grupos*` }, { quoted: msg }) 
-if (!isAdmin) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser usado por admins del grupo*` }, { quoted: msg })  
-let iuser2 = `${msg.quotedMsg ? msg.quotedMsg.key.participant || '' : ''}${msg.mentioned ? msg.mentioned : ''}`      
-if(!iuser2) return conn.sendMessage(from, { text: `*[❗] Uso correcto del comando:*\n*┯┷*\n*┠≽ ${prefix}demote @${senderJid.split`@`[0] || 'tag'}*\n*┠≽ ${prefix}demote -> responder a un mensaje*\n*┷┯*`, mentions: [senderJid] }, { quoted: msg });                     
+if (!msg.isGroup) return conn.sendMessage(from, { text: `*[❗] This command can only be used in groups*` }, { quoted: msg })
+if (!isAdmin) return conn.sendMessage(from, { text: `*[❗] This command can only be used by group admins*` }, { quoted: msg })
+let iuser2 = `${msg.quotedMsg ? msg.quotedMsg.key.participant || '' : ''}${msg.mentioned ? msg.mentioned : ''}`
+if(!iuser2) return conn.sendMessage(from, { text: `*[❗] Correct usage of command:*\n*┯┷*\n*┠≽ ${prefix}demote @${senderJid.split`@`[0] || 'tag'}*\n*┠≽ ${prefix}demote -> responder a un mensaje*\n*┷┯*`, mentions: [senderJid] }, { quoted: msg });                     
 try {
 var userrr2 = '';
 if (msg.quotedMsg && msg.quotedMsg.key && msg.quotedMsg.key.participant) {
@@ -270,10 +270,10 @@ console.log(e);
 } finally {
 if (userrr2) {
 if (!groupAdmins.includes(userrr2)) {
-conn.sendMessage(from, { text: `*[❗] @${userrr2.split`@`[0] || 'user'} no forma parte de l@s admins del grupo*`, mentions: [userrr2] }, { quoted: msg }); 
+conn.sendMessage(from, { text: `*[❗] @${userrr2.split`@`[0] || 'user'} is not part of the group admins*`, mentions: [userrr2] }, { quoted: msg }); 
 } else {
 conn.groupParticipantsUpdate(from, [userrr2], 'demote')
-conn.sendMessage(from, { text: `*[ ✔ ] Comando ejecutado con éxito, ahora @${userrr2.split`@`[0] || 'user'} ya no forma parte de l@s admins del grupo*`, mentions: [userrr2] }, { quoted: msg })}}} 
+conn.sendMessage(from, { text: `*[ ✔ ] Command executed successfully, now @${userrr2.split`@`[0] || 'user'} is no longer part of the group admins*`, mentions: [userrr2] }, { quoted: msg })}}} 
 break    
 case 'ping':
 var timestamp = speed();
