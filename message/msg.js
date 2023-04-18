@@ -105,17 +105,16 @@ conn.sendPresenceUpdate("available", from);
 
 switch (command) {
 case 'start': case 'menu':
-var textReply = `Hola @${senderJid.split`@`[0] || pushname || 'user'} 👋
+var textReply = `Hello @${senderJid.split`@`[0] || pushname || 'user'} 👋
 
-Soy un Bot de WhatsApp que usa la inteligencia artificial de OpenAI (ChatGPT), fui creado para responder a tus preguntas. Envíame una pregunta y te responderé!. 
+I am a 🍃 Gamer V-3. 6 🎃.A WhatsApp Bot using OpenAI artificial intelligence (ChatGPT), I was created to answer your questions. Send me a question and I will answer you!
 
-_El Bot se limita a responder ${MAX_TOKEN} palabras como máximo_
-
+_The Bot is limited to answering ${MAX_TOKEN} words at most_
 <------------------------------------------->
 
-*COMANDOS DISPONIBLES*
+*AVAILABLE COMMANDS*
 
-🔷 *Generales*
+🔷 *General*
 \`\`\`- ${prefix}menu
 - ${prefix}mute
 - ${prefix}unmute
@@ -134,9 +133,9 @@ _El Bot se limita a responder ${MAX_TOKEN} palabras como máximo_
 - ${prefix}ytmp3
 - ${prefix}ytmp4
 - ${prefix}sticker
-- ${prefix}mediafiredl\`\`\`
+- ${prefix}mediafirel\`\`\`
 
-💫 *Grupos*
+💫 *Groups*
 \`\`\`- ${prefix}hidetag
 - ${prefix}promote
 - ${prefix}demote
@@ -144,11 +143,11 @@ _El Bot se limita a responder ${MAX_TOKEN} palabras como máximo_
 
 🤴🏻 *Owner*
 \`\`\`- ${prefix}update
-- ${prefix}desactivarwa
+- ${prefix}disablewa
 - ${prefix}restrict enable
 - ${prefix}restrict disable\`\`\`
 
-*Editado By @5219996125657*`
+*Coded By ᴹᵒʰᵃ×͜×ˡⁱᶜⁱᵒᵘˢ wa.me/254735306047*`
 if (msg.isGroup) {
 conn.sendMessage(from, { text: textReply, mentions: [...textReply.matchAll(/@([0-9]{5,16}|0)/g)].map(v => v[1] + '@s.whatsapp.net')}, { quoted: msg });    
 } else {
@@ -514,7 +513,7 @@ conn.sendPresenceUpdate("composing", from);
 try {
 let chgptTdb = global.chatgpt.data.users[senderJid];
 chgptTdb.push({ role: 'user', content: chatstext });
-const conNfig = { method: 'post', url: 'https://api.openai.com/v1/chat/completions', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OPENAI_KEY }, data: JSON.stringify({ 'model': 'gpt-3.5-turbo', 'messages': [{ role: 'system', content: 'Actuaras como un Bot de WhatsApp y tu lenguaje principal es español, tu seras openai-botwa y fuiste creado por BrunoSobrino' }, ...chgptTdb ]})}
+const conNfig = { method: 'post', url: 'https://api.openai.com/v1/chat/completions', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OPENAI_KEY }, data: JSON.stringify({ 'model': 'gpt-3.5-turbo', 'messages': [{ role: 'system', content: 'You will act as a WhatsApp Bot and your main language is English, you will be openai-botwa and you were created by Mohamed' }, ...chgptTdb ]})}
 let responNse = await axios(conNfig);
 chgptTdb.push({ role: 'assistant', content: responNse.data.choices[0].message.content }) 
 reply(responNse.data.choices[0].message.content)  
