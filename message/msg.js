@@ -278,22 +278,22 @@ break
 case 'ping':
 var timestamp = speed();
 var latensi = speed() - timestamp
-conn.sendMessage(from, { text: `*Tiempo de respuesta: ${latensi.toFixed(4)}s*` }, { quoted: msg });  
+conn.sendMessage(from, { text: `*Response time: ${latensi.toFixed(4)}s*` }, { quoted: msg });  
 break     
 case 'mute': case 'banchat':    
-if (isGroup && !isAdmin) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser usado por admins del grupo*` }, { quoted: msg });  
-if (global.db.data.chats[from].mute) return conn.sendMessage(from, { text: `*[❗] Este chat ya estaba muteado (baneado) desde antes*` }, { quoted: msg });      
+if (isGroup && !isAdmin) return conn.sendMessage(from, { text: `*[❗] This command can only be used by admins of the group*` }, { quoted: msg });
+if (global.db.data.chats[from].mute) return conn.sendMessage(from, { text: `*[❗] This chat was already muted (banned) since before*` }, { quoted: msg }) ;
 global.db.data.chats[from].mute = true
-conn.sendMessage(from, { text: `*[❗] Este chat se ha muteado (baneado) correctamente, el Bot no responderá a ningun mensaje hasta ser desbaneado con el comando ${prefix}unmute*` }, { quoted: msg });    
+conn.sendMessage(from, { text: `*[❗] This chat has been mutated (banned) correctly, the bot will not respond to any message until it is unbanned with the command ${prefix}unmute*` }, { quoted: msg });
 break           
 case 'unmute': case 'unbanchat':
-if (isGroup && !isAdmin) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser usado por admins del grupo*` }, { quoted: msg }); 
-if (!global.db.data.chats[from].mute) return conn.sendMessage(from, { text: `*[❗] Este chat no esta muteado (baneado)*` }, { quoted: msg });    
+if (isGroup && !isAdmin) return conn.sendMessage(from, { text: `*[❗] This command can only be used by admins of the group*` }, { quoted: msg });
+if (!global.db.data.chats[from].mute) return conn.sendMessage(from, { text: `*[❗] This chat is not muted (banned)*` }, { quoted: msg });
 global.db.data.chats[from].mute = false
-conn.sendMessage(from, { text: `*[❗] Este chat ha sido desmuteado (desbaneado) correctamente, ahora el Bot responderá con normalidad*` }, { quoted: msg });    
+conn.sendMessage(from, { text: `*[❗] This chat has been unbanned successfully, now the Bot will respond normally*` }, { quoted: msg });
 break          
 case 'play':
-if (!textoo) return conn.sendMessage(from, { text: `*[❗] Nombre de la canción faltante, por favor ingrese el comando mas el nombre, titulo o enlace de alguna canción o video de YouTube*\n\n*—◉ Ejemplo:*\n*◉ ${prefix + command} Good Feeling - Flo Rida*` }, { quoted: msg });     
+if (!textoo) return conn.sendMessage(from, { text: `*[❗] Missing song name, please enter the command plus the name, title or link of any song or YouTube video*\n\n*—◉ Ejemplo:*\n*◉ ${prefix + command} Good Feeling - Flo Rida*` }, { quoted: msg });     
 let res = await fetch(`https://api.lolhuman.xyz/api/ytplay2?apikey=BrunoSobrino&query=${textoo}`) 
 let json = await res.json()
 let kingcore = await ytplay(textoo)
@@ -302,12 +302,12 @@ if (!audiodownload) audiodownload = kingcore.result
 await conn.sendMessage(from, { audio: { url: `${audiodownload}` }, fileName: `error.mp3`, mimetype: 'audio/mp4' }, { quoted: msg });    
 break
 case 'play2':    
-if (!textoo) return conn.sendMessage(from, { text: `*[❗] Nombre de la canción faltante, por favor ingrese el comando mas el nombre, titulo o enlace de alguna canción o video de YouTube*\n\n*—◉ Ejemplo:*\n*◉ ${prefix + command} Good Feeling - Flo Rida*` }, { quoted: msg });
+if (!textoo) return conn.sendMessage(from, { text: `*[❗] Missing song name, please enter the command plus the name, title or link of any song or YouTube video*\n\n*—◉ Ejemplo:*\n*◉ ${prefix + command} Good Feeling - Flo Rida*` }, { quoted: msg });
 let mediaa = await ytplayvid(textoo)
 await conn.sendMessage(from, { video: { url: mediaa.result }, fileName: `error.mp4`, thumbnail: mediaa.thumb, mimetype: 'video/mp4' }, { quoted: msg });
 break   
 case 'ytmp3':
-if (!textolink) return conn.sendMessage(from, { text: `*[❗] Ingresa el enlace de un video de YouTube*\n\n*—◉ Ejemplo:*\n*◉ ${prefix + command}* https://youtu.be/WEdvakuztPc` }, { quoted: msg });     
+if (!textolink) return conn.sendMessage(from, { text: `*[❗] Enter a YouTube video link*\n\n*—◉ Example:*\n*◉ ${prefix + command}* https://youtu.be/WEdvakuztPc` }, { quoted: msg });     
 let ress22 = await fetch(`https://api.lolhuman.xyz/api/ytaudio2?apikey=BrunoSobrino&url=${textolink}`) 
 let jsonn22 = await ress22.json()
 let kingcoreee2 = await ytmp3(textolink)
@@ -316,7 +316,7 @@ if (!audiodownloaddd2) audiodownloaddd2 = kingcoreee2.result
 await conn.sendMessage(from, { audio: { url: `${audiodownloaddd2}` }, fileName: `error.mp3`, mimetype: 'audio/mp4' }, { quoted: msg });   
 break        
 case 'ytmp4':
-if (!textolink) return conn.sendMessage(from, { text: `*[❗] Ingresa el enlace de un video de YouTube*\n\n*—◉ Ejemplo:*\n*◉ ${prefix + command}* https://youtu.be/WEdvakuztPc` }, { quoted: msg });     
+if (!textolink) return conn.sendMessage(from, { text: `*[❗] Enter a YouTube video link*\n\n*—◉ Example:*\n*◉ ${prefix + command}* https://youtu.be/WEdvakuztPc` }, { quoted: msg });     
 let ress2 = await fetch(`https://api.lolhuman.xyz/api/ytvideo?apikey=BrunoSobrino&url=${textolink}`) 
 let jsonn2 = await ress2.json()
 let kingcoreee = await ytmp4(textolink)
@@ -333,21 +333,21 @@ conn.sendMessage(from, { image: { url: responsee.data.data[0].url }, fileName: `
 try {    
 conn.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/dall-e?apikey=BrunoSobrino&text=${textoo}` }, fileName: `error.jpg` }, { quoted: msg });  
 } catch (jj2) {
-conn.sendMessage(from, { text: "*[❗] Error, no se obtuvo ninguna imagen de la IA...*\n\n*—◉ Error:*\n" + jj2 }, { quoted: msg });   
+conn.sendMessage(from, { text: "*[❗] Error, no image was obtained from the AI...*\n\n*—◉ Error:*\n" + jj2 }, { quoted: msg });   
 }}
 break 
 case 'update':
-if (!isOwner) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser utilizado por el Owner del Bot*` }, { quoted: msg });    
+if (!isOwner) return conn.sendMessage(from, { text: `*[❗] This command can only be used by the Owner of the Bot*` }, { quoted: msg });    
 try {    
 let stdout = execSync('git pull' + (m.fromMe && q ? ' ' + q : ''))
 await conn.sendMessage(from, { text: stdout.toString() }, { quoted: msg });
 } catch { 
-let updatee = execSync('git remote set-url origin https://github.com/BrunoSobrino/openai-botwa.git && git pull')
+let updatee = execSync('git remote set-url origin https://github.com/Mohalicious/gamer.git && git pull')
 await conn.sendMessage(from, { text: updatee.toString() }, { quoted: msg })}  
 break
 case 'desactivarwa':      
-if (!isOwner) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser utilizado por el Owner del Bot*` }, { quoted: msg });
-if (!q || !args[1] || !textoo) return conn.sendMessage(from, { text: `*[❗] Ingrese un numero, ejemplo ${prefix + command} +1 (450) 999-999*` }, { quoted: msg });
+if (!isOwner) return conn.sendMessage(from, { text: `*[❗] This command can only be used by the Owner of the Bot*` }, { quoted: msg });
+if (!q || !args[1] || !textoo) return conn.sendMessage(from, { text: `*[❗] Enter a number, example ${prefix + command} +1 (450) 999-999*` }, { quoted: msg });
 let ntah = await axios.get("https://www.whatsapp.com/contact/noclient/")
 let email = await axios.get("https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=10")
 let cookie = ntah.headers["set-cookie"].join("; ")
@@ -363,7 +363,7 @@ form.append("phone_number", q)
 form.append("email", email.data[0])
 form.append("email_confirm", email.data[0])
 form.append("platform", "ANDROID")
-form.append("your_message", "Perdido/roubado: desative minha conta")
+form.append("your_message", "lost/stolen: disable my account")
 form.append("__user", "0")
 form.append("__a", "1")
 form.append("__csr", "")
@@ -376,36 +376,36 @@ form.append("__comment_req", "0")
 let ressss = await axios({ url, method: "POST", data: form, headers: { cookie } })
 var payload = String(ressss.data)
 if (payload.includes(`"payload":true`)) {
-conn.sendMessage(from, { text: `##- WhatsApp Support -##\n\nHola,\n\nGracias por tu mensaje.\n\nHemos desactivado tu cuenta de WhatsApp. Esto significa que su cuenta está deshabilitada temporalmente y se eliminará automáticamente en 30 días si no vuelve a registrar la cuenta. Tenga en cuenta: el equipo de atención al cliente de WhatsApp no puede eliminar su cuenta manualmente.\n\nDurante el período de cierre:\n • Es posible que sus contactos en WhatsApp aún vean su nombre y foto de perfil.\n • Cualquier mensaje que sus contactos puedan enviar a la cuenta permanecerá en estado pendiente por hasta 30 días.\n\nSi desea recuperar su cuenta, vuelva a registrar su cuenta lo antes posible.\nVuelva a registrar su cuenta ingresando el código de 6 dígitos, el código que recibe por SMS o llamada telefónica. Si te vuelves a registrar\n\nSi tiene alguna otra pregunta o inquietud, no dude en ponerse en contacto con nosotros. Estaremos encantados de ayudar!` }, { quoted: msg });
+conn.sendMessage(from, { text: `##- WhatsApp Support -##\n\nHello,\n\nThank you for your message.\n\nWe have deactivated your WhatsApp account. This means your account is temporarily disabled and will be automatically deleted in 30 days if you don't re-register the account. Please note: WhatsApp Customer Support cannot delete your account manually.\n\nDuring the lockdown period:\n • Your contacts on WhatsApp may still see your name and profile picture.\n • Any messages your contacts may send to the account will remain in pending status for up to 30 days.\n\nIf you wish to recover your account, please re-register your account as soon as possible.\nRe-register your account by entering the 6-digit code, the code you receive by SMS or phone call. If you re-register\n\nIf you have any other questions or concerns, please feel free to contact us. We will be happy to help!` }, { quoted: msg });
 } else if (payload.includes(`"payload":false`)) {
-conn.sendMessage(from, { text: `##- WhatsApp Support -##\n\nHola:\n\nGracias por tu mensaje.\n\nPara proceder con tu solicitud, necesitamos que verifiques que este número de teléfono te pertenece. Por favor, envíanos documentación que nos permita verificar que el número es de tu propiedad, como una copia de la factura telefónica o el contrato de servicio.\n\nPor favor, asegúrate de ingresar tu número de teléfono en formato internacional completo. Para obtener más información sobre el formato internacional, consulta este artículo.\n\nSi tienes alguna otra pregunta o inquietud, no dudes en contactarnos. Estaremos encantados de ayudarte.` }, { quoted: msg });
+conn.sendMessage(from, { text: `##- WhatsApp Support -##\n\nHello:\n\nThank you for your message.\n\nTo proceed with your request, we need you to verify that this phone number belongs to you. Please send us documentation that allows us to verify ownership of the number, such as a copy of your phone bill or service contract.\n\nPlease be sure to enter your phone number in full international format. For more information on the international format, please see this article.\n\nIf you have any other questions or concerns, please feel free to contact us. We will be happy to help you.` }, { quoted: msg });
 } else conn.sendMessage(from, { text: util.format(JSON.parse(res.data.replace("for (;;);", ""))) }, { quoted: msg });  
 break   
 case 'mediafiredl':
-if (!textolink) return conn.sendMessage(from, { text: `*[❗] Ingrese un enlace valido de mediafire, ejemplo: ${prefix}mediafiredl* https://www.mediafire.com/file/r0lrc9ir5j3e2fs/DOOM_v13_UNCLONE` }, { quoted: msg });            
+if (!textolink) return conn.sendMessage(from, { text: `*[❗] Enter a valid mediafire link, example: ${prefix}mediafiredl* https://www.mediafire.com/file/r0lrc9ir5j3e2fs/DOOM_v13_UNCLONE` }, { quoted: msg });            
 let resss2 = await mediafireDl(textolink)
-let caption = `*📓 Nombre:* ${resss2.name}\n*📁 Peso:* ${resss2.size}\n*📄 Tipo:* ${resss2.mime}\n\n*⏳ Espere en lo que envio su archivo. . . .*`.trim()
+let caption = `*📓 Number:* ${resss2.name}\n*📁 Peso:* ${resss2.size}\n*📄 Tipo:* ${resss2.mime}\n\n*⏳ Wait while I send your file. . . .*`.trim()
 await conn.sendMessage(from, { text: caption }, { quoted: msg });
 await conn.sendMessage(from, { document : { url: resss2.link }, fileName: resss2.name, mimetype: resss2.mime.toUpperCase() }, { quoted: msg })       
 break
 /*-------------------------------------------------------*/
 /* [❗]                      [❗]                      [❗] */  
 /*                                                       */ 
-/*       |- [ ⚠ ] - CREDITOS DEL CODIGO - [ ⚠ ] -|      */
-/*     —◉ DESAROLLADO POR OTOSAKA:                       */
-/*     ◉ Otosaka (https://github.com/6otosaka9)          */
-/*     ◉ Número: wa.me/51993966345                       */
+/*       |- [ ⚠ ] - CODE CREDITS - [ ⚠ ] -|      */
+/*     —◉ DEVELOPED BY MOHAMED:                       */
+/*     ◉ Mohamed (https://github.com/Mohalicious)          */
+/*     ◉ Number: wa.me/254735306047                       */
 /*                                                       */
 /*     —◉ FT:                                            */
-/*     ◉ BrunoSobrino (https://github.com/BrunoSobrino)  */
+/*     ◉ Mohamed (https://github.com/Mohalicious)  */
 /*                                                       */
 /* [❗]                      [❗]                      [❗] */
 /*-------------------------------------------------------*/  
 case 'chatgpt': case 'ia': 
-if (!textoo) return conn.sendMessage(from, { text: `*[❗] Ingrese una petición o una orden para usar la funcion ChatGPT*\n\n*—◉ Ejemplos de peticions u ordenes:*\n*◉ ${prefix + command} Reflexion sobre la serie Merlina 2022 de netflix*\n*◉ ${prefix + command} Codigo en JS para un juego de cartas*` }, { quoted: msg });    
+if (!textoo) return conn.sendMessage(from, { text: `*[❗] Enter a request or command to use the ChatGPT function*\n\n*—◉ Examples of requests or commands:*\n*◉ ${prefix + command} Reflection on the series Merlina 2022 on netflix*\n*◉ $ {prefix + command} JS code for a card game*` }, { quoted: msg });    
 try {    
 let chgptdb = global.chatgpt.data.users[senderJid];
-let textoModo = `Actuaras como un Bot de WhatsApp y tu lenguaje principal es español, tu seras openai-botwa y fuiste creado por BrunoSobrino. Si te piden tus comandos, menu o lo que puedes hacer y/o tus funciones le mandas lo siguiente:\n\n*COMANDOS DISPONIBLES*\n\n🔷 *Generales*\n\`\`\`- #menu\n- #mute\n- #unmute\n- #ping\n- #runtime\`\`\`\n\n🤖 *IA*\n\`\`\`- #chatgpt\n- #chatgpt2\n- #delchatgpt\n- #dall-e\`\`\`\n\n📥 *Multimedia*\n\`\`\`- #play\n- #play2\n- #ytmp3\n- #ytmp4\n- #sticker\n- #mediafiredl\`\`\`\n\n💫 *Grupos*\n\`\`\`- #hidetag\n- #promote\n- #demote\n- #kick\`\`\`\n\n🤴🏻 *Owner*\n\`\`\`- #update\n- #desactivarwa\n- #restrict enable\n- #restrict disable\`\`\`\n\nSi te piden hacer algo que este en tu menu pero no lo hacen correctamente muestrales como con un ejemplo\n\nSi te piden un tutorial para hacer o instalar un Bot o algo relacion con tu instalacion o obetenerte para un grupo le recomiendas este canal https://www.youtube.com/@TheShadowBrokers-TEAM y si te piden tu script o source le das el video mas el link de tu repositorio que es este: https://github.com/BrunoSobrino/openai-botwa`  
+let textoModo = `You will act as a WhatsApp Bot and your main language is English, you will be gamer-v3.6 and you were created by Mohamed. If they ask you for your commands, menu or what you can do and/or your functions, you send them the following:\n\n*AVAILABLE COMMANDS*\n\n🔷 *Generales*\n\`\`\`- #menu\n- #mute\n- #unmute\n- #ping\n- #runtime\`\`\`\n\n🤖 *IA*\n\`\`\`- #chatgpt\n- #chatgpt2\n- #delchatgpt\n- #dall-e\`\`\`\n\n📥 *Multimedia*\n\`\`\`- #play\n- #play2\n- #ytmp3\n- #ytmp4\n- #sticker\n- #mediafiredl\`\`\`\n\n💫 *Grupos*\n\`\`\`- #hidetag\n- #promote\n- #demote\n- #kick\`\`\`\n\n🤴🏻 *Owner*\n\`\`\`- #update\n- #disablewa\n- #restrict enable\n- #restrict disable\`\`\`\n\nIf they ask you to do something that is in your menu but they don't do it correctly, show them with an example\n\nIf they ask you for a tutorial to make or install a Bot or something related to your installation or get yourself for a group, you recommend this channel https://www.youtube.com/@donbel_ovibel and if they ask you for your script or source, give them the video plus the link of your repository, which is this: https://github.com/Mohalicious`  
 chgptdb.push({ role: 'user', content: textoo });
 const config = { method: 'post', url: 'https://api.openai.com/v1/chat/completions', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OPENAI_KEY }, data: JSON.stringify({ 'model': 'gpt-3.5-turbo', 'messages': [{ role: 'system', content: textoModo }, ...chgptdb ]})}
 let response = await axios(config);
@@ -436,14 +436,14 @@ break
 case 'delchatgpt':
 try {
 delete global.chatgpt.data.users[senderJid]  
-conn.sendMessage(from, { text: `*[❗] Se elimino con exito el historial de mensajes entre usted y ChatGPT (IA)*\n\n*—◉ Recuerde que puede ultilizar este comando cuando tenga algun error en el comando ${prefix}chatgpt O ${prefix}ia*` }, { quoted: msg });  
+conn.sendMessage(from, { text: `*[❗] Successfully deleted the message history between you and ChatGPT (IA)*\n\n*—◉ Remember that you can use this command when you have an error in the command ${prefix}chatgpt O ${prefix}ia*` }, { quoted: msg });  
 } catch (error1) {   
 console.log(error1)
-conn.sendMessage(from, { text: `*[❗] Error, vuelva a intentarlo*` }, { quoted: msg });  
+conn.sendMessage(from, { text: `*[❗] Failed, try again*` }, { quoted: msg });  
 }   
 break    
 case 'chatgpt2': case 'ia2':      
-if (!textoo) return reply(`*[❗] Ingrese una petición o una orden para usar la funcion ChatGPT*\n\n*—◉ Ejemplos de peticions u ordenes:*\n*◉ ${prefix + command} Reflexion sobre la serie Merlina 2022 de netflix*\n*◉ ${prefix + command} Codigo en JS para un juego de cartas*`)           
+if (!textoo) return reply(`*[❗] Enter a request or command to use the ChatGPT function*\n\n*—◉ Examples of requests or commands:*\n*◉ ${prefix + command} Reflection on the series Merlina 2022 on netflix*\n*◉ $ {prefix + command} JS code for a card game*`)           
 try {
 let IA2 = await fetch(`https://api.amosayomide05.cf/gpt/?question=${textoo}&string_id=${senderJid}`)  
 let IAR2 = await IA2.json()
@@ -463,12 +463,12 @@ let tioress = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=BrunoSobri
 let hasill = await tioress.json()
 reply(`${hasill.result}`.trim())   
 } catch (qqe) {        
-reply("*[❗] Error, no se obtuvieron respuestas de la IA...*\n\n*—◉ Error:*\n" + qqe)  
+reply("*[❗] Error, got no responses from the AI...*\n\n*—◉ Error:*\n" + qqe)  
 }}}}
 break       
 case 'sticker': case 's':
 try {        
-const pname = 'OpenAI - WaBot'
+const pname = 'Mohalicious - Gamer V3.6'
 const athor = '+' + conn.user.id.split(":")[0];
 if (isImage || isQuotedImage) {
 await conn.downloadAndSaveMediaMessage(msg, "image", `./tmp/${sender.split("@")[0]}.jpeg`)
@@ -495,12 +495,12 @@ console.log('Finish')
 await conn.sendMessage(from, { sticker: { url:'stk.webp' }})
 }).addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`]).toFormat('webp').save('stk.webp');
 }}} catch {     
-reply(`*[❗] Responda a una imagen, gif o video, el cual será convertido en sticker, recuerde que debe mandar una imagen o responder a una imagen con el comando ${prefix + command}*`)        
+reply(`*[❗] Reply to an image, gif or video, which will be converted into a sticker, remember that you must send an image or reply to an image with the command ${prefix + command}*`)        
 }
 break 
 default:
 const botNumber22 = '@' + conn.user.id.split(":")[0];
-if (msg.key.fromMe || msg.sender == conn.user.id) return //console.log('[❗] Unicamente respondo mensajes sin comandos de otros usuarios pero no se mi mismo')    
+if (msg.key.fromMe || msg.sender == conn.user.id) return //console.log('[❗] I only answer messages without commands from other users but I don't know myself')    
 if (!chats.startsWith(botNumber22) && isGroup) return
 if (isImage || isVideo || isSticker || isViewOnce || isAudio || isDocument || isLocation) return
 let chatstext = chats.replace(conn.user.id.split(":")[0].split("@")[0], '')
@@ -513,7 +513,7 @@ conn.sendPresenceUpdate("composing", from);
 try {
 let chgptTdb = global.chatgpt.data.users[senderJid];
 chgptTdb.push({ role: 'user', content: chatstext });
-const conNfig = { method: 'post', url: 'https://api.openai.com/v1/chat/completions', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OPENAI_KEY }, data: JSON.stringify({ 'model': 'gpt-3.5-turbo', 'messages': [{ role: 'system', content: 'You will act as a WhatsApp Bot and your main language is English, you will be openai-botwa and you were created by Mohamed' }, ...chgptTdb ]})}
+const conNfig = { method: 'post', url: 'https://api.openai.com/v1/chat/completions', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OPENAI_KEY }, data: JSON.stringify({ 'model': 'gpt-3.5-turbo', 'messages': [{ role: 'system', content: 'You will act as a WhatsApp Bot and your main language is English, you will be gamer-v3.6 and you were created by Mohamed' }, ...chgptTdb ]})}
 let responNse = await axios(conNfig);
 chgptTdb.push({ role: 'assistant', content: responNse.data.choices[0].message.content }) 
 reply(responNse.data.choices[0].message.content)  
@@ -537,7 +537,7 @@ let tiores = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=BrunoSobrin
 let hasil = await tiores.json()
 reply(`${hasil.result}`.trim())   
 } catch (eeee) {        
-reply("*[❗] Error, no se obtuvieron respuestas de la IA...*\n\n*—◉ Error:*\n" + eeee)  
+reply("*[❗] Error, got no responses from the AI...*\n\n*—◉ Error:*\n" + eeee)  
 }}}}}
 break
 }} catch (err) {
