@@ -1,0 +1,18 @@
+{
+  "chats": {
+    "254703853884@s.whatsapp.net": {
+      "mute": false
+    },
+    "status@broadcast": {
+      "mute": false
+    },
+    "254735306047@s.whatsapp.net": {
+      "mute": false
+    }
+  },
+  "settings": {
+    "254703853884:12@s.whatsapp.net": {
+      "restrict": false
+    }
+  }
+}
