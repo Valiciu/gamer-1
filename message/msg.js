@@ -156,7 +156,7 @@ conn.sendMessage(from, { text: textReply, mentions: [...textReply.matchAll(/@([0
 }
 break
 case 'restrict':
-if (!isOwner) return conn.sendMessage(from, { text: `*[❗] Este comando solo puede ser utilizado por el Owner del Bot*` }, { quoted: msg });        
+if (!isOwner) return conn.sendMessage(from, { text: `*[❗] This command can only be used by the Owner of the Bot*` }, { quoted: msg });        
 if (!textoo) return conn.sendMessage(from, { text: `*[❗] Por favor usa una de las siguientes opciones:*\n*—◉ ${prefix}restrict enable*\n*—◉ ${prefix}restrict disable*` }, { quoted: msg });        
 let bott = global.db.data.settings[conn.user.id] || {}            
 if (textoo == 'enable') {
@@ -293,7 +293,7 @@ global.db.data.chats[from].mute = false
 conn.sendMessage(from, { text: `*[❗] This chat has been unbanned successfully, now the Bot will respond normally*` }, { quoted: msg });
 break          
 case 'play':
-if (!textoo) return conn.sendMessage(from, { text: `*[❗] Missing song name, please enter the command plus the name, title or link of any song or YouTube video*\n\n*—◉ Ejemplo:*\n*◉ ${prefix + command} Good Feeling - Flo Rida*` }, { quoted: msg });     
+if (!textoo) return conn.sendMessage(from, { text: `*[❗] Missing song name, please enter the command plus the name, title or link of any song or YouTube video*\n\n*—◉ Example:*\n*◉ ${prefix + command} Umoroto - Wakadinali*` }, { quoted: msg });     
 let res = await fetch(`https://api.lolhuman.xyz/api/ytplay2?apikey=BrunoSobrino&query=${textoo}`) 
 let json = await res.json()
 let kingcore = await ytplay(textoo)
@@ -302,7 +302,7 @@ if (!audiodownload) audiodownload = kingcore.result
 await conn.sendMessage(from, { audio: { url: `${audiodownload}` }, fileName: `error.mp3`, mimetype: 'audio/mp4' }, { quoted: msg });    
 break
 case 'play2':    
-if (!textoo) return conn.sendMessage(from, { text: `*[❗] Missing song name, please enter the command plus the name, title or link of any song or YouTube video*\n\n*—◉ Ejemplo:*\n*◉ ${prefix + command} Good Feeling - Flo Rida*` }, { quoted: msg });
+if (!textoo) return conn.sendMessage(from, { text: `*[❗] Missing song name, please enter the command plus the name, title or link of any song or YouTube video*\n\n*—◉ Example:*\n*◉ ${prefix + command} Umoroto - Wakadinali*` }, { quoted: msg });
 let mediaa = await ytplayvid(textoo)
 await conn.sendMessage(from, { video: { url: mediaa.result }, fileName: `error.mp4`, thumbnail: mediaa.thumb, mimetype: 'video/mp4' }, { quoted: msg });
 break   
@@ -325,7 +325,7 @@ if (!videodownloaddd) videodownloaddd = kingcoreee.result
 await conn.sendMessage(from, { video: { url: videodownloaddd }, fileName: `error.mp4`, thumbnail: `${kingcoreee.thumb || ''}`, mimetype: 'video/mp4' }, { quoted: msg });  
 break    
 case 'dall-e': case 'draw': 
-if (!textoo) return conn.sendMessage(from, { text: `*[❗] Ingrese un texto el cual sera la tematica de la imagen y así usar la función de la IA Dall-E*\n\n*—◉ Ejemplos de peticions:*\n*◉ ${prefix + command} gatitos llorando*\n*◉ ${prefix + command} hatsune miku beso*` }, { quoted: msg });     
+if (!textoo) return conn.sendMessage(from, { text: `*[❗] Enter a text which will be the theme of the image and thus use the function of the AI ​​Dall-E*\n\n*—◉ Sample requests:*\n*◉ ${prefix + command} crying kittens*\n *◉ ${prefix + command} hatsune miku kiss*` }, { quoted: msg });     
 try {       
 const responsee = await openai.createImage({ prompt: textoo, n: 1, size: "512x512", });    
 conn.sendMessage(from, { image: { url: responsee.data.data[0].url }, fileName: `error.jpg` }, { quoted: msg });  
@@ -405,7 +405,7 @@ case 'chatgpt': case 'ia':
 if (!textoo) return conn.sendMessage(from, { text: `*[❗] Enter a request or command to use the ChatGPT function*\n\n*—◉ Examples of requests or commands:*\n*◉ ${prefix + command} Reflection on the series Merlina 2022 on netflix*\n*◉ $ {prefix + command} JS code for a card game*` }, { quoted: msg });    
 try {    
 let chgptdb = global.chatgpt.data.users[senderJid];
-let textoModo = `You will act as a WhatsApp Bot and your main language is English, you will be gamer-v3.6 and you were created by Mohamed. If they ask you for your commands, menu or what you can do and/or your functions, you send them the following:\n\n*AVAILABLE COMMANDS*\n\n🔷 *Generales*\n\`\`\`- #menu\n- #mute\n- #unmute\n- #ping\n- #runtime\`\`\`\n\n🤖 *IA*\n\`\`\`- #chatgpt\n- #chatgpt2\n- #delchatgpt\n- #dall-e\`\`\`\n\n📥 *Multimedia*\n\`\`\`- #play\n- #play2\n- #ytmp3\n- #ytmp4\n- #sticker\n- #mediafiredl\`\`\`\n\n💫 *Grupos*\n\`\`\`- #hidetag\n- #promote\n- #demote\n- #kick\`\`\`\n\n🤴🏻 *Owner*\n\`\`\`- #update\n- #disablewa\n- #restrict enable\n- #restrict disable\`\`\`\n\nIf they ask you to do something that is in your menu but they don't do it correctly, show them with an example\n\nIf they ask you for a tutorial to make or install a Bot or something related to your installation or get yourself for a group, you recommend this channel https://www.youtube.com/@donbel_ovibel and if they ask you for your script or source, give them the video plus the link of your repository, which is this: https://github.com/Mohalicious`  
+let textoModo = `You will act as a WhatsApp Bot and your main language is English, you will be gamer-v3.6 and you were created by Mohamed. If they ask you for your commands, menu or what you can do and/or your functions, you send them the following:\n\n*AVAILABLE COMMANDS*\n\n🔷 *Generales*\n\`\`\`- #menu\n- #mute\n- #unmute\n- #ping\n- #runtime\`\`\`\n\n🤖 *AI*\n\`\`\`- #chatgpt\n- #chatgpt2\n- #delchatgpt\n- #dall-e\`\`\`\n\n📥 *Multimedia*\n\`\`\`- #play\n- #play2\n- #ytmp3\n- #ytmp4\n- #sticker\n- #mediafiredl\`\`\`\n\n💫 *Grupos*\n\`\`\`- #hidetag\n- #promote\n- #demote\n- #kick\`\`\`\n\n🤴🏻 *Owner*\n\`\`\`- #update\n- #disablewa\n- #restrict enable\n- #restrict disable\`\`\`\n\nIf they ask you to do something that is in your menu but they don't do it correctly, show them with an example\n\nIf they ask you for a tutorial to make or install a Bot or something related to your installation or get yourself for a group, you recommend this channel https://www.youtube.com/@donbel_ovibel and if they ask you for your script or source, give them the video plus the link of your repository, which is this: https://github.com/Mohalicious`  
 chgptdb.push({ role: 'user', content: textoo });
 const config = { method: 'post', url: 'https://api.openai.com/v1/chat/completions', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OPENAI_KEY }, data: JSON.stringify({ 'model': 'gpt-3.5-turbo', 'messages': [{ role: 'system', content: textoModo }, ...chgptdb ]})}
 let response = await axios(config);
@@ -442,7 +442,7 @@ console.log(error1)
 conn.sendMessage(from, { text: `*[❗] Failed, try again*` }, { quoted: msg });  
 }   
 break    
-case 'chatgpt2': case 'ia2':      
+case 'chatgpt2': case 'ai2':      
 if (!textoo) return reply(`*[❗] Enter a request or command to use the ChatGPT function*\n\n*—◉ Examples of requests or commands:*\n*◉ ${prefix + command} Reflection on the series Merlina 2022 on netflix*\n*◉ $ {prefix + command} JS code for a card game*`)           
 try {
 let IA2 = await fetch(`https://api.amosayomide05.cf/gpt/?question=${textoo}&string_id=${senderJid}`)  
