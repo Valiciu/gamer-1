@@ -1,7 +1,7 @@
 {
-  "name": "openai-botwa",
+  "name": "gamer",
   "version": "1.0.0",
-  "description": "Simple Chatbot OpenAI by BrunoSobrino",
+  "description": "Simple Chatbot OpenAI by Mohalicious",
   "main": "index.js",
   "directories": {
     "lib": "lib"
@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "BrunoSobrino",
+  "author": "Mohamed",
   "license": "MIT",
   "dependencies": {
     "@adiwajshing/baileys": "^5.0.0",
