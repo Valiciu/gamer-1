@@ -35,7 +35,7 @@ function title() {
 		width: 80,
 		whitespaceBreak: false
 	})))
-	console.log(chalk.yellow(`\n              ${chalk.yellow('[ Editado By BrunoSobrino ]')}\n\n${chalk.red('Bot OpenAI')} : ${chalk.white('WhatsApp Bot OpenAI')}\n${chalk.red('Contactame por WhatsApp')} : ${chalk.white('+52 1 999 612 5657')}\n`))
+	console.log(chalk.yellow(`\n              ${chalk.yellow('[ coded By Mohamed ]')}\n\n${chalk.red('Gamer V2.2')} : ${chalk.white('Gamer Bot V2.2')}\n${chalk.red('Contact me on WhatsApp')} : ${chalk.white('+254735306047')}\n`))
 }
 
 /**
@@ -205,10 +205,10 @@ const connectToWhatsApp = async () => {
                 lastDisconnect.error?.output?.statusCode !== DisconnectReason.loggedOut ? connectToWhatsApp() : console.log('connection logged out...')
             }
             if (update.qr != 0 && update.qr != undefined) {
-                console.log(chalk.yellow('🚩ㅤEscanea este codigo QR, el codigo QR expira en 60 segundos.'))
+                console.log(chalk.yellow('🚩ㅤScan this QR code, the QR code expires in 60 seconds.'))
             }
             if (connection == 'open') {
-                console.log(chalk.yellow('❧ Bot Activo y Funcionando Correctamente ✅\n'))
+                console.log(chalk.yellow('❧ Bot Active and Working Correctly ✅\n'))
             }        
             })
 	
@@ -242,11 +242,11 @@ const usertag = `@${num.split("@")[0]}`
 const namegc = metadata.subject
 let qfake = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${num.split('@')[0]}:${num.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 if (anu.action == 'add') {
-let captionwel = '*╔══════════════*\n*╟❧* @subject\n*╠══════════════*\n*╟❧ @user*\n*╟❧ BIENVENIDO(A)* \n*║*\n*╟❧ LEE LA DESCRIPCIÓN!!*\n*║*\n*╟❧ DISFRUTA TU ESTADÍA!!*\n*╚══════════════*'
+let captionwel = '*╔══════════════*\n*╟❧* @subject\n*╠══════════════*\n*╟❧ @user*\n*╟❧ WELCOME TO* \n*║*\n*╟❧ READ THE DESCRIPTION!!*\n*║*\n*╟❧ ENJOY YOUR STAY!!*\n*╚══════════════*'
 let captionwel2 = captionwel.replace('@user', usertag).replace('@subject', namegc).replace('@desc', descgc)
 conn.sendMessage(anu.id, { image: PPWlcm, caption: captionwel2, mentions: [num]}, { quoted: qfake })                  
 } else if (anu.action == 'remove') {
-let captionbye = '*╔══════════════*\n*╟❧* @user\n*╟❧ HASTA PRONTO 👋🏻* \n*╚══════════════*' 
+let captionbye = '*╔══════════════*\n*╟❧* @user\n*╟❧ SEE YOU SOON AMIGO I THINK 👋🏻* \n*╚══════════════*' 
 let captionbye2 = captionbye.replace('@user', usertag)
 conn.sendMessage(anu.id, { image: PPLft, caption: captionbye2, mentions: [num]}, { quoted: qfake })                    
 }}} catch (e) {
