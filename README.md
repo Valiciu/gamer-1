@@ -11,9 +11,8 @@ pkg install nodejs -y
 pkg install ffmpeg -y 
 pkg install wget
 pkg install imagemagick -y
-git clone https://github.com/Mohalicious/spike
-cd spike
-rm -r session
+git clone https://github.com/Mohalicious/gamer
+cd gamer
 npm install
 npm start
 scan qr code within 15seconds
